@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	// maxInt is the largest representable value of type int
+	// maxInt is the largest representable value of type int.
 	maxInt = int(^uint(0) >> 1)
 
 	// minRTO is the minimum allowed value for the retransmit timeout.

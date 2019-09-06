@@ -13,20 +13,14 @@
 // limitations under the License.
 
 // +build linux
+// +build 386 arm mips mipsle
 
 package fdbased
 
 import (
 	"syscall"
-	"unsafe"
 )
 
-func setIovLen(h *syscall.Msghdr, iovlen int) {
-	const vlen = unsafe.Sizeof(h.Iovlen)
-	switch vlen {
-	case 4:
-		*(*uint32)(unsafe.Pointer(&h.Iovlen)) = uint32(iovlen)
-	case 8:
-		*(*uint64)(unsafe.Pointer(&h.Iovlen)) = uint64(iovlen)
-	}
+func setIovlen(h *syscall.Msghdr, iovlen int) {
+	h.Iovlen = uint32(iovlen)
 }

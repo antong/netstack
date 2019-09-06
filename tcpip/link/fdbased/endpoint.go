@@ -251,7 +251,7 @@ func createInboundDispatcher(e *endpoint, fd int, isSocket bool) (linkDispatcher
 			const fanoutType = 0x8000 // PACKET_FANOUT_HASH | PACKET_FANOUT_FLAG_DEFRAG
 			// This const will overflow a 32 bit int and won't compile. Variable
 			// type conversion from 32 bit uint to 32 bit int will overflow correctly.
-			var fanoutArg uint = (1 | fanoutType<<16)
+			var fanoutArg uint = (fanoutID | fanoutType<<16)
 			if err := syscall.SetsockoptInt(fd, syscall.SOL_PACKET, unix.PACKET_FANOUT, int(fanoutArg)); err != nil {
 				return nil, fmt.Errorf("failed to enable PACKET_FANOUT option: %v", err)
 			}

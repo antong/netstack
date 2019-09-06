@@ -200,7 +200,7 @@ func newRecvMMsgDispatcher(fd int, e *endpoint) (linkDispatcher, error) {
 	d.msgHdrs = make([]rawfile.MMsgHdr, MaxMsgsPerRecv)
 	for i := range d.msgHdrs {
 		d.msgHdrs[i].Msg.Iov = &d.iovecs[i][0]
-		setIovLen(&d.msgHdrs[i].Msg, iovLen)
+		setIovlen(&d.msgHdrs[i].Msg, iovLen)
 	}
 	return d, nil
 }
